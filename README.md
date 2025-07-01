@@ -1,4 +1,3 @@
-```markdown
 # 🧠 Gender & Age Detection AI App
 
 This project is a full-stack AI web application that detects the **gender** and **age** of a person from an uploaded image using Google Gemini (Generative AI). Built using **FastAPI** for the backend and **Streamlit** for the frontend.
