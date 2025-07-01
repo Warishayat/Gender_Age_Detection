@@ -6,7 +6,7 @@ This project is a full-stack AI web application that detects the **gender** and 
 
 ## 🚀 Live Demos
 
-- 🔹 **Frontend (Streamlit)**: [Click Here](https://your-streamlit-app-url)  
+- 🔹 **Frontend (Streamlit)**: [Click Here]([https://your-streamlit-app-url](https://gender-age-pridiction01.streamlit.app/))  
 - 🔹 **Backend (FastAPI)**: [Click Here](https://your-render-backend-url)
 
 ---
