@@ -1,0 +1,8 @@
+fastapi                
+google-generativeai    
+grpcio-status          
+langchain              
+langchain-google-genai 
+load-dotenv            
+python-multipart       
+uvicorn                
