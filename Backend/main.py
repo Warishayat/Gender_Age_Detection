@@ -35,9 +35,17 @@ def convert_uploadfile_to_base64(file: UploadFile) -> str:
 async def analyze(file:UploadFile = File(...)):
     try:
         base64_image = convert_uploadfile_to_base64(file)
-        result = Analyze_image_and_Age(base64_image)  # now it's base64 string
-        return {
-            "response" : result
-        }
+        result = Analyze_image_and_Age(base64_image)
+
+        # Convert JSON string to dict if needed
+        if isinstance(result, str):
+            try:
+                result = json.loads(result)
+            except json.JSONDecodeError:
+                result = {"raw": result}
+        return {"response": result}
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
