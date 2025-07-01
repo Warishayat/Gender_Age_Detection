@@ -37,12 +37,13 @@ async def analyze(file:UploadFile = File(...)):
         base64_image = convert_uploadfile_to_base64(file)
         result = Analyze_image_and_Age(base64_image)
 
-        # Convert JSON string to dict if needed
         if isinstance(result, str):
+            cleaned = result.strip().replace("```json", "").replace("```", "").strip()
             try:
-                result = json.loads(result)
+                result = json.loads(cleaned)
             except json.JSONDecodeError:
-                result = {"raw": result}
+                result = {"raw": cleaned}
+
         return {"response": result}
 
     except Exception as e:
