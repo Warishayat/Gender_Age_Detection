@@ -12,31 +12,37 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=gemini_api_key)
 prompt = """
-You are an expert in facial analysis.
+You are a facial analysis expert.
 
-Your task is to detect **gender** and **age** from the uploaded image. Only proceed if you are at least **90% confident** in your prediction.
+Your task is to predict the gender and age of the person in the uploaded image.
 
-- If no human is detected, respond with:
+⚠️ Only respond if you are at least 90% confident in your prediction.
+
+Instructions:
+
+- If there is **no human face**, respond only with:
   {
     "error": "No human detected."
   }
 
-- If a human is detected, and you are at least 90% confident in the prediction, respond strictly in this JSON format:
+- If your **confidence is below 90%**, respond only with:
+  {
+    "error": "Confidence below 90%. Cannot provide a reliable prediction."
+  }
+
+- If a face is detected and you are confident (≥ 90%), respond **only** in this exact JSON format:
   {
     "Gender": "Male" or "Female" or "Transgender",
-    "Age": integer (estimated),
-    "Confidence": "XX%" (a string percentage, must be 90% or higher)
+    "Age": estimated integer age,
+    "Confidence": "percent string like '91%'"
   }
 
-- If your confidence is below 90%, respond with:
-  {
-    "error": "Low confidence. Unable to predict reliably."
-  }
-
-Do not include markdown, explanations, or formatting — return only raw JSON.
+Return ONLY valid JSON.
+No markdown.
+No explanations.
+No extra formatting.
+.
 """
-
-
 
 def Analyze_image_and_Age(image_path):
     model = genai.GenerativeModel("gemini-1.5-flash")
