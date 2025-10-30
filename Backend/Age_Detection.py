@@ -45,7 +45,7 @@ No extra formatting.
 """
 
 def Analyze_image_and_Age(image_path):
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content([
         prompt,
         {"mime_type": "image/jpeg", "data": image_path}
